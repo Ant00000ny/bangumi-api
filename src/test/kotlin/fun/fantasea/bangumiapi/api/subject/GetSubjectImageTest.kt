@@ -9,6 +9,6 @@ class GetSubjectImageTest {
     @Test
     fun execute() {
         val result = bangumiClient.execute(GetSubjectImage(79227, Type.COMMON))
-        assertTrue { result.byteArray.isNotEmpty() }
+        assertTrue { result.isNotEmpty() }
     }
 }
