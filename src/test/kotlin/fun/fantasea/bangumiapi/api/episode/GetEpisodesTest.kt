@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 class GetEpisodesTest {
     @Test
     fun execute() {
-        val episodeCollection = bangumiClient.execute(GetEpisodes(79227))
+        val episodeCollection = bangumiClient.execute(GetEpisodes(9912))
         println(episodeCollection.toJsonString(true))
     }
 }

@@ -4,10 +4,10 @@ import `fun`.fantasea.bangumiapi.bangumiClient
 import `fun`.fantasea.bangumiapi.util.toJsonString
 import org.junit.jupiter.api.Test
 
-class GetSubjectPersonsTest {
+class GetSubjectRelationsTest {
     @Test
     fun execute() {
-        val persons = bangumiClient.execute(GetSubjectPersons(9912))
-        println(persons.toJsonString(true))
+        val result = bangumiClient.execute(GetSubjectRelations(9912))
+        println(result.toJsonString(true))
     }
 }

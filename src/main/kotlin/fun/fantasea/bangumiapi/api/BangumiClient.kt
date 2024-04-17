@@ -34,15 +34,10 @@ class BangumiClient(
         }
 
         return when {
-            // collection -> list of objects
-            R::class.java subclassOf Collection::class.java -> body.use { it.string() }.convertTo<R>()
-            // byte array (image)
-            R::class.java subclassOf ByteArray::class.java -> body.use { it.bytes() } as R
-            // object -> json
-            R::class.java subclassOf Any::class.java -> body.use { it.string() }.convertTo<R>()
-            else -> throw BangumiApiException("unsupported response entity type")
+            R::class.java isSubclassOf ByteArray::class.java -> body.use { it.bytes() } as R
+            else -> body.use { it.string() }.convertTo<R>()
         }
     }
 
-    infix fun Class<*>.subclassOf(that: Class<*>): Boolean = that.isAssignableFrom(this)
+    infix fun Class<*>.isSubclassOf(that: Class<*>): Boolean = that.isAssignableFrom(this)
 }

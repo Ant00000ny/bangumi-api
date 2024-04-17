@@ -8,7 +8,7 @@ class GetSubjectTest {
 
     @Test
     fun execute() {
-        val result = bangumiClient.execute(GetSubject(79227))
+        val result = bangumiClient.execute(GetSubject(9912))
         println(result.toJsonString(true))
     }
 }
