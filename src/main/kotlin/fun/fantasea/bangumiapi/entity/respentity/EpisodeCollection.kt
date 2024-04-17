@@ -48,4 +48,4 @@ data class EpisodeCollection(
     val total: Int,
     val limit: Int,
     val offset: Int,
-) : ApiJsonResponseEntity
+)

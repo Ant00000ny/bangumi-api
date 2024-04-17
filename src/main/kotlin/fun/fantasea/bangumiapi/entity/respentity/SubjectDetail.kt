@@ -254,4 +254,4 @@ data class SubjectDetail(
     val locked: Boolean,
     val nsfw: Boolean,
     val type: Int,
-) : ApiJsonResponseEntity
+)

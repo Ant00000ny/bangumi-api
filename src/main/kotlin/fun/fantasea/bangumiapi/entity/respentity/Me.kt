@@ -27,4 +27,4 @@ data class Me(
     val nickname: String,
     val id: Int,
     val user_group: Int,
-) : ApiJsonResponseEntity
+)

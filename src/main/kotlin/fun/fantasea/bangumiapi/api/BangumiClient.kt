@@ -1,9 +1,5 @@
 package `fun`.fantasea.bangumiapi.api
 
-import `fun`.fantasea.bangumiapi.entity.respentity.ApiByteArrayResponseEntity
-import `fun`.fantasea.bangumiapi.entity.respentity.ApiJsonResponseEntity
-import `fun`.fantasea.bangumiapi.entity.respentity.Image
-import `fun`.fantasea.bangumiapi.entity.respentity.Image.Companion.toImage
 import `fun`.fantasea.bangumiapi.exception.BangumiApiException
 import `fun`.fantasea.bangumiapi.util.convertTo
 import `fun`.fantasea.bangumiapi.util.ifThen
@@ -29,22 +25,24 @@ class BangumiClient(
         .build()
 
     inline fun <T : Api<R>, reified R> execute(api: T): R {
-        try {
-            val body = bangumiOkhttpClient.newCall(api.getRequest())
+        val body = try {
+            bangumiOkhttpClient.newCall(api.getRequest())
                 .execute()
                 .body
-
-            return when (R::class.java) {
-                ApiJsonResponseEntity::class.java -> body.use { it.string() }.convertTo<R>()
-                ApiByteArrayResponseEntity::class.java -> when (R::class.java) {
-                    Image::class.java -> body.use { it.bytes() }.toImage() as R
-                    else -> throw BangumiApiException("unsupported response entity type")
-                }
-
-                else -> throw BangumiApiException("unsupported response entity type")
-            }
         } catch (e: Exception) {
             throw BangumiApiException("bangumi-api request error", e)
         }
+
+        return when {
+            // collection -> list of objects
+            R::class.java subclassOf Collection::class.java -> body.use { it.string() }.convertTo<R>()
+            // byte array (image)
+            R::class.java subclassOf ByteArray::class.java -> body.use { it.bytes() } as R
+            // object -> json
+            R::class.java subclassOf Any::class.java -> body.use { it.string() }.convertTo<R>()
+            else -> throw BangumiApiException("unsupported response entity type")
+        }
     }
+
+    infix fun Class<*>.subclassOf(that: Class<*>): Boolean = that.isAssignableFrom(this)
 }
