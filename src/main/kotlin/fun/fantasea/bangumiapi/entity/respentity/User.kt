@@ -1,6 +1,7 @@
 package `fun`.fantasea.bangumiapi.entity.respentity
 
 import `fun`.fantasea.bangumiapi.entity.Avatar
+import `fun`.fantasea.bangumiapi.entity.UserGroup
 
 /**
  * ```json
@@ -19,12 +20,12 @@ import `fun`.fantasea.bangumiapi.entity.Avatar
  * }
  * ```
  */
-data class Me(
+data class User(
+    val id: Int,
+    val username: String,
+    val nickname: String,
+    val user_group: UserGroup,
     val avatar: Avatar,
     val sign: String,
     val url: String,
-    val username: String,
-    val nickname: String,
-    val id: Int,
-    val user_group: Int,
 )
