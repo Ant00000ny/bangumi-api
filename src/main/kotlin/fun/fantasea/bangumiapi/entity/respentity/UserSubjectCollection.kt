@@ -240,4 +240,4 @@ data class UserSubjectCollection(
     val total: Int,
     val limit: Int,
     val offset: Int,
-) : ApiResponseEntity
+) : ApiJsonResponseEntity

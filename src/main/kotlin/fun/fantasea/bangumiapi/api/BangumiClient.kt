@@ -1,5 +1,9 @@
 package `fun`.fantasea.bangumiapi.api
 
+import `fun`.fantasea.bangumiapi.entity.respentity.ApiByteArrayResponseEntity
+import `fun`.fantasea.bangumiapi.entity.respentity.ApiJsonResponseEntity
+import `fun`.fantasea.bangumiapi.entity.respentity.Image
+import `fun`.fantasea.bangumiapi.entity.respentity.Image.Companion.toImage
 import `fun`.fantasea.bangumiapi.exception.BangumiApiException
 import `fun`.fantasea.bangumiapi.util.convertTo
 import `fun`.fantasea.bangumiapi.util.ifThen
@@ -29,8 +33,16 @@ class BangumiClient(
             val body = bangumiOkhttpClient.newCall(api.getRequest())
                 .execute()
                 .body
-                .use { it.string() }
-            return body.convertTo<R>()
+
+            return when (R::class.java) {
+                ApiJsonResponseEntity::class.java -> body.use { it.string() }.convertTo<R>()
+                ApiByteArrayResponseEntity::class.java -> when (R::class.java) {
+                    Image::class.java -> body.use { it.bytes() }.toImage() as R
+                    else -> throw BangumiApiException("unsupported response entity type")
+                }
+
+                else -> throw BangumiApiException("unsupported response entity type")
+            }
         } catch (e: Exception) {
             throw BangumiApiException("bangumi-api request error", e)
         }

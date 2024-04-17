@@ -79,4 +79,4 @@ data class SearchSubjectCollection(
     val total: Int,
     val limit: Int,
     val offset: Int,
-) : ApiResponseEntity
+) : ApiJsonResponseEntity
