@@ -4,4 +4,12 @@ A kotlin implementation of [bangumi api](https://bangumi.github.io/api).
 
 ## Example Usage
 
-See [api tests](src/test/kotlin/fun/fantasea/bangumiapi/api).
+```kotlin
+fun main() {
+    val bangumiClient = BangumiClient("MY_ACCESS_TOKEN") // token is optional for public API
+    val user = bangumiClient.execute(GetUserByName("155125"))
+    println(user.nickname)
+}
+```
+
+See [api tests](src/test/kotlin/fun/fantasea/bangumiapi/api) for more examples.
