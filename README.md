@@ -13,3 +13,14 @@ fun main() {
 ```
 
 See [api tests](src/test/kotlin/fun/fantasea/bangumiapi/api) for more examples.
+
+
+## Maven Dependency
+
+```xml
+<dependency>
+    <groupId>fun.fantasea</groupId>
+    <artifactId>bangumi-api</artifactId>
+    <version>CHANGE_THIS_TO_LATEST</version>
+</dependency>
+```
