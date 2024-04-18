@@ -1,6 +1,6 @@
 package `fun`.fantasea.bangumiapi.api.episode
 
-import `fun`.fantasea.bangumiapi.api.collection.GetUserCollection
+import `fun`.fantasea.bangumiapi.api.collection.subject.GetUserCollection
 import `fun`.fantasea.bangumiapi.bangumiClient
 import `fun`.fantasea.bangumiapi.entity.CollectionType
 import `fun`.fantasea.bangumiapi.entity.SubjectType

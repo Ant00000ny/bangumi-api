@@ -34,6 +34,7 @@ class BangumiClient(
         }
 
         return when {
+            R::class.java isSubclassOf Unit::class.java -> Unit as R
             R::class.java isSubclassOf ByteArray::class.java -> body.use { it.bytes() } as R
             else -> body.use { it.string() }.convertTo(R::class.java)
         }

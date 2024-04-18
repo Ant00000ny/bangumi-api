@@ -1,9 +1,10 @@
-package `fun`.fantasea.bangumiapi.api.collection
+package `fun`.fantasea.bangumiapi.api.collection.subject
 
 import `fun`.fantasea.bangumiapi.api.Api
 import `fun`.fantasea.bangumiapi.entity.CollectionType
 import `fun`.fantasea.bangumiapi.entity.SubjectType
-import `fun`.fantasea.bangumiapi.entity.respentity.UserSubjectCollection
+import `fun`.fantasea.bangumiapi.entity.UserSubject
+import `fun`.fantasea.bangumiapi.entity.respentity.DataCollection
 import `fun`.fantasea.bangumiapi.util.BASE_URL
 import `fun`.fantasea.bangumiapi.util.ifThen
 import okhttp3.HttpUrl.Companion.toHttpUrl
@@ -32,12 +33,12 @@ class GetUserCollection(
     /**
      * 分页大小。
      */
-    private val limit: Int = 30,
+    private val limit: Int? = null,
     /**
      * 页码。
      */
-    private val offset: Int = 0,
-) : Api<UserSubjectCollection> {
+    private val offset: Int? = null,
+) : Api<DataCollection<UserSubject>> {
     override val path: String
         get() = "/v0/users/$username/collections"
 
@@ -49,8 +50,8 @@ class GetUserCollection(
                     .newBuilder()
                     .ifThen(subjectType != null) { addQueryParameter("subject_type", subjectType!!.value.toString()) }
                     .ifThen(type != null) { addQueryParameter("type", type!!.value.toString()) }
-                    .addQueryParameter("limit", limit.toString())
-                    .addQueryParameter("offset", offset.toString())
+                    .ifThen(limit != null) { addQueryParameter("limit", limit.toString()) }
+                    .ifThen(offset != null) { addQueryParameter("offset", offset.toString()) }
                     .build()
             )
             .get()

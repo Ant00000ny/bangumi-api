@@ -1,8 +1,9 @@
 package `fun`.fantasea.bangumiapi.api.subject
 
 import `fun`.fantasea.bangumiapi.api.Api
+import `fun`.fantasea.bangumiapi.entity.SearchSubject
 import `fun`.fantasea.bangumiapi.entity.SubjectSearchFilter
-import `fun`.fantasea.bangumiapi.entity.respentity.SearchSubjectCollection
+import `fun`.fantasea.bangumiapi.entity.respentity.DataCollection
 import `fun`.fantasea.bangumiapi.util.APPLICATION_JSON
 import `fun`.fantasea.bangumiapi.util.BASE_URL
 import `fun`.fantasea.bangumiapi.util.om
@@ -45,7 +46,7 @@ class SearchSubjects(
     private val keyword: String,
     private val sort: Sort? = null,
     private val filter: SubjectSearchFilter? = null,
-) : Api<SearchSubjectCollection> {
+) : Api<DataCollection<SearchSubject>> {
     override val path: String
         get() = "/v0/search/subjects"
 
