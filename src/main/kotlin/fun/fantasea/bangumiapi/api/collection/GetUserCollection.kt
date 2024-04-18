@@ -12,7 +12,7 @@ import okhttp3.Request
 /**
  * 获取用户收藏的条目。
  */
-class GetCollection(
+class GetUserCollection(
     /**
      * 用户名。未设置用户名的，使用 UID。
      */

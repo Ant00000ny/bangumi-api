@@ -1,4 +1,7 @@
-package `fun`.fantasea.bangumiapi.entity
+package `fun`.fantasea.bangumiapi.entity.respentity
+
+import `fun`.fantasea.bangumiapi.entity.Item
+import `fun`.fantasea.bangumiapi.entity.Weekday
 
 /**
  * ```json
@@ -749,7 +752,7 @@ package `fun`.fantasea.bangumiapi.entity
  *
  * ```
  */
-data class DailyBangumiEntity(
+data class Calendar(
     val weekday: Weekday,
     val items: List<Item>,
 )

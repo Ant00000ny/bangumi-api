@@ -1,11 +1,11 @@
 package `fun`.fantasea.bangumiapi.api.subject
 
 import `fun`.fantasea.bangumiapi.api.Api
-import `fun`.fantasea.bangumiapi.entity.respentity.DailyBangumiCollection
+import `fun`.fantasea.bangumiapi.entity.respentity.Calendar
 import `fun`.fantasea.bangumiapi.util.BASE_URL
 import okhttp3.Request
 
-class Calendar : Api<DailyBangumiCollection> {
+class Calendar : Api<List<Calendar>> {
     override val path: String
         get() = "/calendar"
 
