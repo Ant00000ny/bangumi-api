@@ -1,15 +1,15 @@
-package `fun`.fantasea.bangumiapi.api.character
+package `fun`.fantasea.bangumiapi.api.person
 
 import `fun`.fantasea.bangumiapi.api.Api
-import `fun`.fantasea.bangumiapi.entity.respentity.RelatedSubject
+import `fun`.fantasea.bangumiapi.entity.respentity.PersonCharacter
 import `fun`.fantasea.bangumiapi.util.BASE_URL
 import okhttp3.Request
 
-class GetPersonRelatedSubjects(
+class GetPersonRelatedCharacters(
     private val personId: Int,
-) : Api<List<RelatedSubject>> {
+) : Api<List<PersonCharacter>> {
     override val path: String
-        get() = "/v0/persons/$personId/subjects"
+        get() = "/v0/persons/$personId/characters"
 
     override fun getRequest(): Request {
         return Request.Builder()
