@@ -2,12 +2,12 @@ package `fun`.fantasea.bangumiapi.api.subject
 
 import `fun`.fantasea.bangumiapi.api.Api
 import `fun`.fantasea.bangumiapi.entity.SearchSubject
+import `fun`.fantasea.bangumiapi.entity.Sort
 import `fun`.fantasea.bangumiapi.entity.SubjectSearchFilter
 import `fun`.fantasea.bangumiapi.entity.respentity.DataCollection
 import `fun`.fantasea.bangumiapi.util.APPLICATION_JSON
 import `fun`.fantasea.bangumiapi.util.BASE_URL
 import `fun`.fantasea.bangumiapi.util.om
-import net.bytebuddy.TypeCache.Sort
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 
