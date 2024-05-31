@@ -26,9 +26,10 @@ class BangumiClient(
 
     inline fun <T : Api<R>, reified R> execute(api: T): R {
         val body = try {
-            bangumiOkhttpClient.newCall(api.getRequest())
+            val response = bangumiOkhttpClient.newCall(api.getRequest())
                 .execute()
-                .body
+            check(response.isSuccessful) { throw BangumiApiException("server returned 404") }
+            response.body
         } catch (e: Exception) {
             throw BangumiApiException("bangumi-api request error", e)
         }
